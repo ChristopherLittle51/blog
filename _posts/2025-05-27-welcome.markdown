@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "Welcome"
+date:   2025-05-27 14:01:16 -0400
+categories: general
+---
+## this is the beginning of a journey
+
+Lorem Ipsom Dolor Set Amet
