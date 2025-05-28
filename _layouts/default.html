@@ -1,0 +1,88 @@
+      
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+      <filter id="grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" result="noise"/>
+        <feColorMatrix type="saturate" values="0" result="desaturated_noise"/>
+        <feComponentTransfer in="desaturated_noise" result="lifted_noise">
+            <feFuncA type="linear" slope="0.15" intercept="0"/>
+        </feComponentTransfer>
+        <feBlend in="SourceGraphic" in2="lifted_noise" mode="multiply" />
+      </filter>
+    </svg>
+
+    {%- include header.html -%}
+
+    <button id="darkModeToggle" aria-label="Toggle dark mode" style="position: fixed; top: 15px; right: 15px; z-index: 1000; padding: 5px 10px; cursor: pointer;">🌙/☀️</button>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+
+    {%- include footer.html -%}
+
+    <script>
+      // Dark Mode Toggle Script
+      const toggleButton = document.getElementById('darkModeToggle');
+      const body = document.body;
+      const preference = localStorage.getItem('darkMode');
+
+      const enableDarkMode = () => {
+        body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+        toggleButton.textContent = '☀️'; // Sun for light mode
+      };
+
+      const disableDarkMode = () => {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+        toggleButton.textContent = '🌙'; // Moon for dark mode
+      };
+
+      // Apply preference on load
+      if (preference === 'enabled') {
+        enableDarkMode();
+      } else if (preference === 'disabled') {
+        disableDarkMode();
+      } else {
+        // Optional: OS preference detection (if no user preference saved)
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          enableDarkMode();
+        } else {
+          disableDarkMode(); // Default to light if no OS preference or not supported
+        }
+      }
+
+      // Toggle on button click
+      toggleButton.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+          disableDarkMode();
+        } else {
+          enableDarkMode();
+        }
+      });
+
+      // Listen for OS preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        // Only change if no explicit user preference is set via the button
+        if (localStorage.getItem('darkMode') === null) {
+          if (event.matches) {
+            enableDarkMode();
+          } else {
+            disableDarkMode();
+          }
+        }
+      });
+    </script>
+
+  </body>
+</html>
+
+    

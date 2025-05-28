@@ -1,0 +1,138 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Post Title (for post page)",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Publishing Date & Time",
+          "name": "date",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Layout",
+          "name": "layout",
+          "type": "choice",
+          "choices": [
+            "post",
+            "page"
+          ],
+          "default": "post"
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Is Draft?",
+          "name": "draft",
+          "type": "draft"
+        },
+        {
+          "title": "Post Description (for SEO)",
+          "name": "description",
+          "type": "string",
+          "single": false
+        },
+        {
+          "title": "JOURNAL: Bullet Text (for homepage)",
+          "name": "journal_text",
+          "type": "string",
+          "required": false,
+          "description": "The short text to display in the bullet journal list on the homepage."
+        },
+        {
+          "title": "JOURNAL: Entry Type (Symbol)",
+          "name": "type",
+          "type": "choice",
+          "choices": [
+            "note",
+            "task",
+            "event",
+            "long"
+          ],
+          "default": "note",
+          "description": "Determines the bullet symbol (e.g., note: —, task: •, event: O)."
+        },
+        {
+          "title": "JOURNAL: Entry Status",
+          "name": "status",
+          "type": "choice",
+          "choices": [
+            "",
+            "completed",
+            "migrated",
+            "cancelled",
+            "idea"
+          ],
+          "default": "",
+          "description": "Modifies the symbol (e.g., completed: X)."
+        },
+        {
+          "title": "JOURNAL: Entry Priority",
+          "name": "priority",
+          "type": "choice",
+          "choices": [
+            "",
+            "high",
+            "low"
+          ],
+          "default": "",
+          "description": "Adds priority indicator (e.g., high: !)."
+        },
+        {
+          "title": "JOURNAL: Display as Text Only (No Link)",
+          "name": "journal_only",
+          "type": "boolean",
+          "default": false,
+          "description": "If true, this journal entry will not link to its post page."
+        },
+        {
+          "title": "JOURNAL: Image URL (for homepage bullet)",
+          "name": "image_url",
+          "type": "image",
+          "description": "Path to an image to display with the journal entry (e.g., /assets/images/my-image.jpg)."
+        },
+        {
+          "title": "JOURNAL: Image Alt Text",
+          "name": "image_alt",
+          "type": "string",
+          "description": "Alternative text for the journal image (accessibility)."
+        },
+        {
+          "title": "JOURNAL: External Link URL",
+          "name": "external_url",
+          "type": "string",
+          "description": "If this journal entry should link to an external site instead of its own post page."
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "jekyll",
+  "frontMatter.content.publicFolder": "assets",
+  "frontMatter.preview.host": "http://localhost:4000",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "posts",
+      "path": "[[workspace]]/_posts"
+    }
+  ],
+  "frontMatter.git.enabled": true,
+  "frontMatter.dashboard.media.selectedFolder": "assets/images"
+}

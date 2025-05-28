@@ -1,0 +1,157 @@
+---
+# Only the front matter draws the line above.
+---
+
+@import "minima"; // Or your base theme
+
+/* === Variables === */
+:root {
+  --grid-size: 20px;
+  --dot-size: 1px;
+
+  /* Light Mode Colors (Defaults) */
+  --body-bg-color: #f8f8f8; /* Warmer off-white */
+  --text-color: #222; /* Softer black */
+  --dot-color: #e0e0e0; /* Lighter grey for dots */
+  --link-color: #007bff; /* Example link color */
+  --heading-color: #111;
+  /* Add more color variables as needed: borders, accents, etc. */
+}
+
+/* === Dot Grid Background & Base Typography === */
+body {
+  font: 400 16px/1.25 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: var(--text-color);
+  background-color: var(--body-bg-color);
+  background-image:
+    radial-gradient(circle at center, var(--dot-color) var(--dot-size), transparent calc(var(--dot-size) + 1px));
+  background-size: var(--grid-size) var(--grid-size);
+  filter: url(#grain); /* Assuming SVG is in your HTML */
+}
+
+/* === Global Grid Alignment for Typography === */
+h1, h2, h3, h4, h5, h6 {
+  line-height: calc(var(--grid-size) * 2);
+  margin-top: calc(var(--grid-size) * 2);
+  margin-bottom: var(--grid-size);
+  color: var(--heading-color);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--grid-size);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none; /* Optional: remove default underline */
+}
+a:hover {
+  text-decoration: underline; /* Optional: add underline on hover */
+}
+
+
+/* === Journal Specific Styles === */
+ul.journal-list {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: var(--grid-size);
+}
+
+ul.journal-list li.journal-entry {
+  list-style: none;
+  position: relative;
+  padding-left: 1.5em;
+  line-height: var(--grid-size);
+  margin-bottom: var(--grid-size);
+}
+
+.journal-item-content {
+  display: inline;
+}
+
+.journal-item-preview {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-left: 0.5em;
+  transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+}
+
+.journal-entry:hover .journal-item-preview,
+.journal-item-content:hover .journal-item-preview {
+  opacity: 1;
+  max-height: calc(var(--grid-size) * 5);
+}
+
+.journal-symbol {
+  position: absolute;
+  left: 0;
+  font-size: 1.2em;
+  line-height: inherit;
+  top: calc((var(--grid-size) - 1.2em) / 2 - 0.05em);
+}
+
+.type-task .journal-symbol::before { content: '•'; /* color will be var(--text-color) or a specific var */ }
+.type-event .journal-symbol::before { content: 'O'; /* color: var(--link-color); */ }
+.type-note .journal-symbol::before { content: '—'; }
+.type-long .journal-symbol::before { content: '+'; }
+
+.status-completed { text-decoration: line-through; /* color might need a var */ }
+.status-completed .journal-symbol::before { content: 'X'; /* color: green-var; */ }
+/* ... other status and priority symbol styles ... */
+/* Update their colors to use CSS variables for dark mode compatibility */
+.type-task .journal-symbol::before { color: var(--text-color); }
+.type-event .journal-symbol::before { content: 'O'; color: var(--link-color); }
+.type-note .journal-symbol::before { color: var(--text-color); opacity: 0.7; }
+.type-long .journal-symbol::before { content: '+'; color: var(--text-color); opacity: 0.7; }
+
+.status-completed { text-decoration: line-through; color: var(--text-color); opacity: 0.6; }
+.status-completed .journal-symbol::before { content: 'X'; color: #28a745; } /* Keep green for completed, or make it a var */
+
+
+.journal-media {
+  margin-top: var(--grid-size);
+  margin-bottom: var(--grid-size);
+}
+
+/* === Content within Posts/Pages for Grid Alignment === */
+.post-content p,
+.post-content ul,
+.post-content ol,
+.post-content blockquote {
+  margin-bottom: var(--grid-size);
+  line-height: var(--grid-size);
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  line-height: calc(var(--grid-size) * 2);
+  margin-top: calc(var(--grid-size) * 2);
+  margin-bottom: var(--grid-size);
+}
+
+/* === Dark Mode === */
+body.dark-mode {
+  --body-bg-color: #2a2a2a; /* Dark background */
+  --text-color: #e0e0e0;   /* Light text */
+  --dot-color: #444;      /* Darker dots */
+  --link-color: #6cafff;   /* Lighter blue for links */
+  --heading-color: #f0f0f0;
+
+  /* Adjust symbol colors for dark mode if needed */
+  /* .type-task .journal-symbol::before { color: var(--text-color); } */
+  /* .status-completed .journal-symbol::before { color: #3bc760; } /* Brighter green */
+}
+
+/* In dark mode, images might be too bright. Optionally dim them slightly. */
+body.dark-mode .journal-media img,
+body.dark-mode .post-content img {
+  filter: brightness(0.85) contrast(1.1);
+}
+
+/* === Grain SVG Filter === */
+/* The SVG definition itself must be in an HTML file, typically _includes/svg-defs.html or directly in _layouts/default.html */
