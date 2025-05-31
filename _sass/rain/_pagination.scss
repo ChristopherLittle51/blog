@@ -1,0 +1,79 @@
+.pagination {
+  border-top: 1px solid $leuchtturm-lines;
+  font-family: "Nothing You Could Do", $sans-serif;
+  padding-top: 2rem;
+  margin-top: 3rem;
+  position: relative;
+  text-align: center;
+
+  span {
+    color: $default-shade;
+    font-size: 1.1rem;
+  }
+
+  .top {
+    @include transition(all .3s ease-out);
+    color: $default-color;
+    font-family: "Nothing You Could Do", $sans-serif;
+    font-size: 1.1rem;
+    opacity: .7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .right-container {
+    text-align: right;
+  }
+
+  .left-container {
+    text-align: left;
+  }
+
+  .arrow {
+    @include transition(all .3s ease-out);
+    color: $default-color;
+    position: absolute;
+
+    &:hover,
+    &:focus {
+      opacity: .6;
+      text-decoration: none;
+    }
+  }
+
+  .left {
+    left: 0;
+  }
+
+  .right {
+    right: 0;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    a {
+      color: $blue;
+      text-decoration: none;
+      font-family: "Nothing You Could Do", $sans-serif;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid $leuchtturm-lines;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: $leuchtturm-lines;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .fa-angle-left, .fa-angle-right {
+    display: none; // Remove font awesome icons for cleaner bullet journal look
+  }
+}

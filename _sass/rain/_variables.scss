@@ -1,0 +1,89 @@
+// Dot Grid & Bullet Journal Colors
+$dot-color: #d3d3d3;
+$dot-size: 2px;
+$dot-spacing: 20px;
+$leuchtturm-cream: #fefdf8;
+$leuchtturm-lines: #f0ebe2;
+
+// Bullet Journal Symbols
+$bullet-task: #333;
+$bullet-event: #4a90e2;
+$bullet-note: #7ed321;
+$bullet-completed: #50e3c2;
+$bullet-cancelled: #d0021b;
+$bullet-priority: #f5a623;
+
+// Typography Colors
+$default-color: #333;
+$default-shade: #1a1a1a;
+$default-tint: #666;
+$grey-1: #666;
+$grey-2: #e8e6dd;
+$grey-3: #fefdf6;
+$white: #fefdf6;
+$blue: #4a90e2;
+$shadow-color: rgba(0, 0, 0, .1);
+$code-color: #d0021b;
+
+// Fonts - handwritten/notebook style (pen-like, not marker-like)
+$handwritten-font: 'Nothing You Could Do', 'Caveat', 'Kalam', 'Handlee', 'Indie Flower', 'Patrick Hand', cursive;
+$sans-serif: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+$monospaced: 'Sono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+
+// Default font
+$primary-font: $handwritten-font;
+
+// Max width for content
+$max-width: 800px;
+
+// Paper textures - Light cream paper texture
+$paper-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feComponentTransfer><feFuncA type="discrete" tableValues="0.02 0.03 0.04 0.05"/></feComponentTransfer><feColorMatrix type="matrix" values="0.95 0.92 0.85 0 0.1 0.95 0.92 0.85 0 0.08 0.95 0.92 0.85 0 0.05 0 0 0 1 0"/><feComposite operator="multiply" in2="SourceGraphic"/></filter></defs><rect width="100%" height="100%" fill="%23fefcf6" filter="url(%23noiseFilter)" opacity="0.08"/></svg>');
+
+// Enhanced colors for notebook feel
+$ink-blue: #2c3e50;
+$ink-black: #2c2c2c;
+$paper-cream: #fefdf8;
+$paper-white: #ffffff;
+$ruled-line: #f0ebe2;
+
+// Hand-drawn line effects
+$handdrawn-line-primary: #666;
+$handdrawn-line-secondary: #999;
+
+// Dark Mode Variables
+$dark-bg: #212529; // A common dark background
+$dark-paper-cream: #2a2e32; // Darker paper effect
+$dark-text: #e9ecef; // Light text for dark backgrounds
+$dark-headings: #ffffff; // White headings
+$dark-link: #79c0ff; // A common accessible blue for dark mode links
+$dark-accent-border: #495057; // For borders, lines
+$dark-nav-bg: rgba(25, 28, 30, 0.95); // Darker nav background
+$dark-footer-bg: rgba(25, 28, 30, 0.9); // Darker footer background
+$dark-blockquote-bg: rgba(52, 58, 64, 0.5); // Darker blockquote
+$dark-blockquote-border: #6c757d;
+$dark-code-bg: #343a40; // Darker code blocks
+$dark-code-color: #f8f9fa; // Light text in code blocks
+$dark-dot-color: #495057; // Darker dots for the grid
+$dark-leuchtturm-lines: #495057; // Darker ruling lines
+$dark-grey-1: #adb5bd; // Lighter grey for dark mode
+$dark-grey-2: #343a40; // Darker grey for backgrounds if needed
+$dark-grey-3: #212529; // Base dark bg for consistency
+$dark-bullet-task: #ced4da;
+$dark-bullet-event: #8ab4f8;
+$dark-bullet-note: #81c995;
+$dark-bullet-completed: #66d9ef;
+$dark-bullet-cancelled: #f28b82;
+$dark-bullet-priority: #fcc419;
+
+
+@mixin box-sizing($type: border-box) {
+  -webkit-box-sizing: $type;
+     -moz-box-sizing: $type;
+          box-sizing: $type;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+     -moz-transition: $args;
+          transition: $args;
+}

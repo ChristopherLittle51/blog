@@ -65,10 +65,11 @@
             "note",
             "task",
             "event",
-            "long"
+            "long",
+            "image"
           ],
           "default": "note",
-          "description": "Determines the bullet symbol (e.g., note: —, task: •, event: O)."
+          "description": "Determines the bullet symbol (e.g., note: —, task: •, event: O, image: appears as taped photo)."
         },
         {
           "title": "JOURNAL: Entry Status",
@@ -98,10 +99,10 @@
         },
         {
           "title": "JOURNAL: Display as Text Only (No Link)",
-          "name": "journal_only",
+          "name": "post_only",
           "type": "boolean",
           "default": false,
-          "description": "If true, this journal entry will not link to its post page."
+          "description": "If true, this journal entry will not link to its post page and will display as plain text."
         },
         {
           "title": "JOURNAL: Image URL (for homepage bullet)",
@@ -120,6 +121,25 @@
           "name": "external_url",
           "type": "string",
           "description": "If this journal entry should link to an external site instead of its own post page."
+        },
+        {
+          "title": "JOURNAL: Media Type",
+          "name": "media_type",
+          "type": "choice",
+          "choices": [
+            "",
+            "image",
+            "video",
+            "audio"
+          ],
+          "default": "",
+          "description": "Type of media to display inline with the journal entry."
+        },
+        {
+          "title": "JOURNAL: Media Caption",
+          "name": "media_caption",
+          "type": "string",
+          "description": "Caption text to display with inline media."
         }
       ]
     }

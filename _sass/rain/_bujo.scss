@@ -1,0 +1,212 @@
+// Bullet Journal Mixins and Styles
+
+@mixin bullet-symbol($symbol, $color) {
+  &::before {
+    content: $symbol;
+    color: $color;
+    font-weight: bold;
+    margin-right: 0.75em;
+    display: inline-block;
+    width: 1.2em;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1;
+  }
+}
+
+// Bullet Journal Entry Types
+.bullet-entry {
+  display: flex;
+  align-items: flex-start;
+  margin: 0.5em 0;
+  line-height: 1.5;
+  
+  // Align with dot grid - using calc to position at grid intersection
+  padding-left: calc(#{$dot-spacing} * 0.5);
+  
+  &.task {
+    @include bullet-symbol('•', $bullet-task);
+  }
+  
+  &.task.completed {
+    @include bullet-symbol('X', $bullet-completed);
+    opacity: 0.7;
+  }
+  
+  &.task.cancelled {
+    @include bullet-symbol('ø', $bullet-cancelled);
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+  
+  &.task.migrated {
+    @include bullet-symbol('>', $bullet-task);
+  }
+  
+  &.task.scheduled {
+    @include bullet-symbol('<', $bullet-task);
+  }
+  
+  &.event {
+    @include bullet-symbol('○', $bullet-event);
+  }
+  
+  &.note {
+    @include bullet-symbol('–', $bullet-note);
+  }
+  
+  &.priority {
+    @include bullet-symbol('*', $bullet-priority);
+    font-weight: 500;
+  }
+  
+  &.inspiration {
+    @include bullet-symbol('!', $bullet-priority);
+    font-style: italic;
+  }
+  
+  &.image {
+    @include bullet-symbol('Ü', $bullet-note);
+  }
+}
+
+// Journal page container
+.journal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: transparent;
+  
+  // Align content with dot grid
+  margin-left: calc(#{$dot-spacing} / 2);
+  
+  @media (max-width: 600px) {
+    padding: 1rem;
+    margin-left: 0;
+  }
+}
+
+// Date headers in journal style
+.journal-date {
+  font-weight: 600;
+  color: $default-shade;
+  margin: 2rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $leuchtturm-lines;
+  
+  // Align with dot grid
+  margin-left: calc(#{$dot-spacing} / 2);
+}
+
+// Journal entry content
+.journal-content {
+  margin-left: 1.5em;
+  color: $default-color;
+  
+  p {
+    margin: 0.25em 0;
+    line-height: 1.5;
+  }
+  
+  // Link styles are inherited from _base.scss
+}
+
+// Monthly/weekly collections
+.collection-header {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: $default-shade;
+  margin: 3rem 0 1.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  
+  // Align with dot grid
+  margin-left: calc(#{$dot-spacing} / 2);
+}
+
+// Index/contents styling
+.index-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.25em 0;
+  padding: 0.25em 0;
+  
+  // Align with dot grid
+  margin-left: calc(#{$dot-spacing} / 2);
+  
+  .page-number {
+    color: $grey-1;
+    font-size: 0.9em;
+  }
+  
+  &:hover {
+    background: rgba($leuchtturm-lines, 0.3);
+  }
+}
+
+// Tags and labels
+.tag {
+  display: inline-block;
+  background: $leuchtturm-lines;
+  color: $default-shade;
+  padding: 0.1em 0.5em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  margin: 0 0.25em 0.25em 0;
+  
+  &.priority {
+    background: $bullet-priority;
+    color: white;
+  }
+  
+  &.completed {
+    background: $bullet-completed;
+    color: white;
+  }
+}
+
+// Dark Mode Adjustments for Bujo
+body.dark-mode {
+  // .bullet-entry symbols are handled by the mixin with dark variables.
+
+  .journal-date {
+    color: $dark-headings; 
+    border-bottom-color: $dark-accent-border;
+  }
+
+  .journal-content {
+    color: $dark-text;
+  }
+
+  .collection-header {
+    color: $dark-headings;
+  }
+
+  .index-entry {
+    .page-number {
+      color: $dark-grey-1;
+    }
+    
+    &:hover {
+      background: rgba($dark-leuchtturm-lines, 0.1); 
+    }
+  }
+
+  .tag {
+    background: $dark-grey-2;
+    color: $dark-text;
+    
+    &.priority {
+      background: $dark-bullet-priority;
+      color: $dark-bg; 
+    }
+    
+    &.completed {
+      background: $dark-bullet-completed;
+      color: $dark-bg; 
+    }
+  }
+}
+
+// Font Toggle for Bujo (if specific overrides are needed)

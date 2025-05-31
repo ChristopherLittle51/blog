@@ -1,0 +1,292 @@
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 90%;
+  overflow-x: visible; // Allow photos to extend slightly beyond container
+  position: relative;
+}
+
+main,
+footer,
+.nav-container {
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 90%;
+}
+
+// Add specific handling for journal pages with overflowing photos
+.journal-page {
+  position: relative;
+  overflow-x: visible;
+  
+  .catalogue {
+    position: relative;
+    overflow-x: visible;
+  }
+}
+
+.nav {
+  background: rgba($leuchtturm-cream, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $leuchtturm-lines;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%; // Ensure nav takes full width
+
+  &-container {
+    display: flex;
+    justify-content: space-between; // Title on left, toggle on right for closed mobile
+    align-items: center;
+    padding: 0.5rem 1rem;
+    max-width: $max-width;
+    margin: 0 auto;
+    position: relative; // For absolute positioning of the dropdown
+  }
+
+  &-title {
+    @include transition(all .2s ease-out);
+    color: $default-shade;
+    display: inline-block;
+    margin: 0;
+    padding-right: .2rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
+  }
+
+  // Hamburger toggle button - ensure it's always visible on mobile
+  .nav-toggle {
+    display: block; // Visible on mobile
+    background: none;
+    border: none;
+    font-size: 1.5rem; // Adjust as needed for Font Awesome icon
+    color: $default-shade; // Ensure icon color matches text
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101; // Above the links wrapper
+
+    // Remove old CSS hamburger styles
+    // .hamburger { ... }
+    // &[aria-expanded="true"] .hamburger { ... }
+  }
+
+  .nav-links-wrapper {
+    display: none; // Hidden by default on mobile
+    flex-direction: column;
+    align-items: flex-start; // Align items to the start
+    position: absolute;
+    top: 100%; // Position below the nav bar
+    left: 0;
+    right: 0;
+    background: rgba($leuchtturm-cream, 0.98);
+    border-top: 1px solid $leuchtturm-lines;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%; // Take full width
+
+    &.active {
+      display: flex; // Show when active
+    }
+  }
+
+  ul.nav-main-links,
+  ul.nav-mobile-additional-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%; // Ensure lists take full width
+
+    li {
+      margin-bottom: 0.5rem; // Spacing between items
+      width: 100%;
+
+      a, button {
+        display: block; // Make links/buttons take full width
+        padding: 0.5rem 0;
+        color: $default-shade;
+        text-decoration: none;
+        font-size: 1rem;
+
+        &:hover, &:focus {
+          color: $blue;
+        }
+      }
+      button {
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  ul.nav-mobile-additional-links {
+    margin-top: 1rem; 
+    padding-top: 1rem; 
+    border-top: 1px solid $leuchtturm-lines;
+    display: flex; // New: Make this flex container
+    flex-direction: row; // New: Arrange items in a row
+    justify-content: space-around; // New: Distribute items
+    align-items: center; // New: Align items vertically
+    
+    li {
+      display: flex; 
+      align-items: center;
+      width: auto; // New: Allow items to size based on content
+      margin-bottom: 0; // New: Remove bottom margin for row layout
+      margin-right: 0.5rem; // New: Add some spacing between items
+
+      &:last-child {
+        margin-right: 0; // No margin for the last item
+      }
+      i { // Styles for icons within these buttons/links
+        margin-right: 0; // Reset any specific icon margins if not needed directly on <i>
+      }
+      button, a { // Ensure buttons and links within take up appropriate space
+        padding: 0.5rem; // Adjust padding for touch targets
+      }
+    }
+  }
+
+  // Desktop styles
+  @media (min-width: 769px) {
+    .nav-container {
+      // Revert to row layout for title and links wrapper
+    }
+
+    .nav-toggle {
+      display: none; // Hide hamburger on desktop
+    }
+
+    .nav-links-wrapper {
+      display: flex !important; // Override mobile 'none' and ensure it's flex
+      flex-direction: row; // Horizontal layout
+      align-items: center;
+      position: static; // Not absolutely positioned
+      background: transparent;
+      border-top: none;
+      padding: 0;
+      box-shadow: none;
+      width: auto; // Auto width for content
+    }
+
+    ul.nav-main-links {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 0 1rem 0 0; // Original margin
+      width: auto;
+
+      li {
+        margin-bottom: 0;
+        margin-right: 1rem; // Spacing between horizontal items
+        width: auto;
+
+        &:last-child {
+          margin-right: 0;
+        }
+        a, button {
+          padding: 0.2rem 0.5rem; // Adjust padding as needed
+        }
+      }
+    }
+    
+    // Social icons and toggles on desktop
+    ul.nav-mobile-additional-links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+        width: auto;
+        justify-content: flex-start; // Revert to start for desktop
+
+        li {
+            margin-bottom: 0;
+            margin-right: 0.5rem; // Spacing for icons/toggles
+             width: auto;
+            &:last-child {
+                margin-right: 0;
+            }
+             i {
+                margin-right: 0; // No extra margin if icon is the only content
+            }
+        }
+    }
+  }
+}
+
+// ...existing .nav-social-icons styles if any, might need adjustment or removal if fully merged ...
+// Ensure .nav-social-icons specific styles don't conflict if it's still used elsewhere,
+// or if .nav-mobile-additional-links is now the primary way to style these.
+
+footer {
+  font-family: $sans-serif;
+  padding: 3rem 0 2rem 0;
+  text-align: center;
+  background: rgba($leuchtturm-cream, 0.9);
+  border-top: 1px solid $leuchtturm-lines;
+  margin-top: 4rem;
+
+  span {
+    color: $grey-1;
+    font-size: .8rem;
+    
+    a {
+      color: $blue;
+    }
+  }
+}
+
+body.dark-mode {
+  .nav {
+    background: $dark-nav-bg; 
+    border-bottom-color: $dark-accent-border;
+
+    &-title {
+      color: $dark-headings; 
+    }
+
+    .nav-main-links a {
+      color: $dark-link; // Use dark mode link color
+
+      &:hover,
+      &:focus {
+        opacity: .8; // Adjust hover opacity for dark mode if needed
+      }
+    }
+
+    &-social-icons {
+      button,
+      a {
+        color: $dark-text; // Ensure icons and buttons also use dark mode text color
+      }
+    }
+  }
+
+  footer {
+    background: $dark-footer-bg; // Darker footer background
+    border-top-color: $dark-accent-border;
+
+    span {
+      color: $dark-grey-1; // Lighter grey for footer text
+      a {
+        color: $dark-link; // Dark mode link color for footer links
+      }
+    }
+  }
+}
+
+// Font toggle specific styles (if any needed for layout elements)
+// body.font-sans-serif {
+//   .nav-title {
+//     // Example: Adjust font properties if needed when sans-serif is active
+//   }
+// }

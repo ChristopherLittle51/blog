@@ -1,0 +1,225 @@
+* {
+  @include box-sizing;
+  line-height: 1.5;
+}
+
+html,
+body {
+  color: $default-color;
+  margin: 0;
+  padding: 0;
+  background-color: $leuchtturm-cream;
+}
+
+html {
+  font-family: $handwritten-font;
+  font-size: 16px;
+  overflow-y: scroll;
+
+  @media (min-width: 600px) {
+    font-size: 18px;
+  }
+}
+
+.theme-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column; // Keep as column or change to row if preferred
+  gap: 10px; // Increased gap slightly
+
+  button {
+    background-color: transparent; // Make background transparent
+    border: 1px solid $grey-2; // Keep a subtle border or remove if desired
+    color: $default-color;
+    cursor: pointer;
+    font-size: 1.5em; // Increase icon size
+    padding: 8px; // Adjust padding to make it more square-like for icons
+    border-radius: 50%; // Make buttons circular
+    width: 40px; // Explicit width
+    height: 40px; // Explicit height
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.2s ease;
+
+    &:hover {
+      background-color: $grey-3; // Subtle hover effect
+      border-color: $grey-1;
+      transform: scale(1.1); // Slight zoom on hover
+    }
+
+    &:focus {
+      outline: 2px solid $blue;
+      outline-offset: 2px;
+    }
+
+    // Specific style for the font toggle button text
+    .font-toggle-text {
+      font-size: 0.8em; // Adjust size of 'S' if needed, relative to button font-size
+      line-height: 1; // Ensure 'S' is centered
+    }
+  }
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+  font-family: $primary-font;
+  
+  // Enhanced dot grid with paper texture
+  background-color: $paper-cream;
+  background-image: 
+    radial-gradient(circle, $dot-color 1px, transparent 1px),
+    $paper-texture;
+  background-size: $dot-spacing $dot-spacing, 100px 100px;
+  background-position: 0 0, 0 0;
+  min-height: 100vh;
+  
+  // Add subtle shadow/depth for paper effect
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+      transparent 0%, 
+      rgba(0,0,0,0.02) 25%, 
+      transparent 50%, 
+      rgba(0,0,0,0.01) 75%, 
+      transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+// Dark Mode Styles
+body.dark-mode {
+  background-color: $dark-paper-cream;
+  color: $dark-text;
+  background-image: 
+    radial-gradient(circle, $dark-dot-color 1px, transparent 1px),
+    $paper-texture; // Assuming paper texture can remain or be adjusted
+
+  &::before {
+    // Optional: Adjust or remove the overlay for dark mode
+    background: linear-gradient(135deg, 
+      transparent 0%, 
+      rgba(255,255,255,0.01) 25%, // Lighter overlay for dark mode if kept
+      transparent 50%, 
+      rgba(255,255,255,0.005) 75%, 
+      transparent 100%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $dark-headings;
+    text-shadow: 0.5px 0.5px 0.5px rgba(255,255,255,0.05); // Lighter shadow
+  }
+
+  a {
+    color: $dark-link; // Use the defined dark mode link color
+  }
+
+  blockquote {
+    border-left-color: $dark-blockquote-border; // Using specific variable
+    color: $dark-grey-1;
+    background-color: $dark-blockquote-bg; 
+  }
+
+  // Update other elements for dark mode as needed
+  .nav-title {
+    color: $dark-headings; // Match general headings
+  }
+
+  .theme-controls {
+    button {
+      color: $dark-text;
+      border-color: $dark-accent-border;
+
+      &:hover {
+        background-color: $dark-code-bg; 
+        border-color: $dark-link;
+      }
+
+      &:focus {
+        outline-color: $dark-link;
+      }
+    }
+  }
+
+  // Code block styling is handled in _code.scss
+  // pre, code {
+  //   background-color: $dark-code-bg; 
+  //   color: $dark-code-color; 
+  //   border-color: $dark-accent-border; 
+  // }
+}
+
+// Font toggle styles
+body.font-sans-serif {
+  font-family: $sans-serif;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $sans-serif;
+    transform: none; // Remove rotation for sans-serif
+    text-shadow: none; // Remove text shadow for cleaner sans-serif
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $ink-black;
+  font-family: $handwritten-font;
+  line-height: 1.2;
+  font-weight: 600;
+  
+  // Add slight rotation for handwritten feel
+  transform: rotate(-0.2deg);
+  transform-origin: left center;
+  
+  // Slight text shadow for pen depth
+  text-shadow: 0.5px 0.5px 0.5px rgba(0,0,0,0.1);
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+blockquote {
+  border-left: .25rem solid $grey-2;
+  color: $grey-1;
+  margin: .8rem 0;
+  padding: .5rem 1rem;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 600px) {
+    padding: 0 5rem 0 1.25rem;
+  }
+}
+
+img {
+  display: block;
+  margin: 0 0 1rem;
+  max-width: 100%;
+}
+
+td {
+  vertical-align: top;
+}

@@ -1,0 +1,83 @@
+pre,
+code {
+  font-family: $monospaced;
+}
+
+code {
+  background-color: $grey-3;
+  border-radius: 3px;
+  color: $code-color;
+  font-size: 85%;
+  padding: .25em .5em;
+}
+
+pre {
+  margin: 0 0 1rem;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  font-size: 100%;
+  padding: 0;
+}
+
+.highlight {
+  background-color: $grey-3;
+  border-radius: 3px;
+  line-height: 1.4;
+  margin: 0 0 1rem;
+  padding: 1rem;
+
+  pre {
+    margin-bottom: 0;
+    overflow-x: auto;
+  }
+
+  .lineno {
+    color: $default-tint;
+    display: inline-block; // Ensures the null space also isn't selectable
+    padding: 0 .75rem 0 .25rem;
+    // Make sure numbers aren't selectable
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+  }
+}
+
+// Dark Mode for Code Blocks
+body.dark-mode {
+  code:not(pre > code) { // Target inline code specifically, not code within pre
+    background-color: $dark-code-bg;
+    color: $dark-code-color;
+  }
+
+  .highlight {
+    background-color: $dark-code-bg;
+    // Text color for .highlight is usually set by syntax highlighting theme below
+    // or should inherit $dark-code-color if not overridden by syntax theme.
+    color: $dark-code-color; // Explicitly set base color for highlighted code
+
+    pre {
+      color: $dark-code-color; // Ensure pre within highlight also gets the color
+    }
+
+    .lineno {
+      color: $dark-grey-1; // Darker line numbers
+    }
+  }
+  
+  // If you have a separate _syntax-dark.scss, you would import it here.
+  // Otherwise, you might need to override specific syntax classes from _syntax.scss:
+  // Example (ensure these match your actual syntax classes from _syntax.scss):
+  // .highlight .c, .highlight .c1, .highlight .cm { color: #999; } // Comments
+  // .highlight .k, .highlight .kc, .highlight .kd { color: #c586c0; } // Keywords
+  // .highlight .nf, .highlight .nx { color: #9cdcfe; } // Functions, names
+  // .highlight .s, .highlight .s1, .highlight .s2 { color: #ce9178; } // Strings
+  // .highlight .nb { color: #4ec9b0; } // Built-ins
+  // ... and so on for other token types.
+}
+
+// Font Toggle for Code (Monospaced font should generally remain monospaced)
+// No specific changes usually needed here unless $monospaced itself needs to change,
+// or if elements within code blocks were styled with $handwritten-font (unlikely).

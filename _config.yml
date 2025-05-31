@@ -22,14 +22,51 @@ title: christopher shaughnessy little
 email: chris@shaughnessy.xyz
 description: >- # this means to ignore newlines until "baseurl:"
   seeking an algorithm-free online experience.
+  
+# Bullet Journal Theme Settings
+dot_grid:
+  enabled: true
+  dot_size: 2px
+  dot_spacing: 20px
+  dot_color: "#d3d3d3"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://chris.shaughnessy.xyz" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  christopherlittle51
 
+# Author
+author:
+  name: christopher shaughnessy little
+  email: chris@shaughnessy.xyz
+  url: https://chris.shaughnessy.xyz
+
 # Build settings
-theme: minima
+markdown: kramdown
+future: true  # Allow posts with future dates
 plugins:
   - jekyll-feed
+  - jekyll-paginate
+
+# Assets
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Permalinks
+permalink: /:year-:month-:day/:title
+paginate: 5
+paginate_path: "/page:num/"
+
+# Related posts settings
+related_posts_section:
+  max_count: 5
+  min_common_tags: 2
+
+# Links to social media
+social:
+  email: chris@shaughnessy.xyz
+  github: https://github.com/christopherlittle51
+  twitter: 
+  linkedin: 
 
 # Exclude from processing.
 # The following items will not be processed, by default.
